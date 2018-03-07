@@ -7,6 +7,7 @@ Adrián Payol Montero
 """
 
 import webapp
+#import csv
 
 FORMULARIO = """
     <form action="" method="POST">
@@ -16,7 +17,11 @@ FORMULARIO = """
     </form> 
 """
 
+url_original = {}
+url_corta = {}
+
 class practica1(webapp.webApp):
+
     def parse(self,request):
         metodo = request.split()[0]
         recurso = request.split()[1]
