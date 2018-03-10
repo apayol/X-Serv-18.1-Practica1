@@ -9,6 +9,7 @@ Adrián Payol Montero
 import webapp
 import csv
 import os.path
+from urllib.parse import unquote
 
 FORMULARIO = """
     <form action="" method="POST">
@@ -45,14 +46,29 @@ class practica1(webapp.webApp):
         self.leer()
         metodo = request.split(' ', 1)[0]
         recurso = request.split(' ', 2)[1]
-        url_orig = request.split('=')[-1]
-        print(metodo)
-        print(recurso)
-        return (metodo, recurso, url_orig)
+        peticion = request.split('=')[-1]
+        return (metodo, recurso, peticion)
 
     def process(self, parsedRequest):
         metodo, recurso, url_orig = parsedRequest
-        
+        FORMULARIO
+        if (metodo == "GET"):
+            print("Es un get")
+            if recurso == "favicon.ico":
+                codigo = "HTTP/1.1 404 Not Found"
+                respuesta_html = "<html><body><h1>Not found</h1></body></html>"
+            codigo = "HTTP/1.1 200 OK"
+            respuesta_html = ("<html><body><h1>Prueba1" +
+                              "</h1></body></html>")
+        elif (metodo == "POST"):
+            codigo = "HTTP/1.1 200 OK"
+            respuesta_html = ("<html><body><h1>Prueba2" +
+                              "</h1></body></html>")
+            print("Es un post")
+        else:
+            codigo = "HTTP/1.1 405 Method Not allowed"
+            respuesta_html = ("<html><body><h1>Metodo no permitido" +
+                              "</h1></body></html>")
         return (codigo, respuesta_html)
 
 if __name__=="__main__":
