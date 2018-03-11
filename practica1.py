@@ -51,20 +51,22 @@ class practica1(webapp.webApp):
 
     def process(self, parsedRequest):
         metodo, recurso, url_orig = parsedRequest
-        FORMULARIO
         if (metodo == "GET"):
             print("Es un get")
             if recurso == "favicon.ico":
                 codigo = "HTTP/1.1 404 Not Found"
                 respuesta_html = "<html><body><h1>Not found</h1></body></html>"
-            codigo = "HTTP/1.1 200 OK"
-            respuesta_html = ("<html><body><h1>Prueba1" +
-                              "</h1></body></html>")
+            elif recurso == "/":
+                codigo = "HTTP/1.1 200 OK"
+                respuesta_html = FORMULARIO
+            else:
+                codigo = "HTTP/1.1 404 Not Found"
+                respuesta_html = "<html><body><h1>Not found</h1></body></html>"
         elif (metodo == "POST"):
+            print("Es un post")
             codigo = "HTTP/1.1 200 OK"
             respuesta_html = ("<html><body><h1>Prueba2" +
                               "</h1></body></html>")
-            print("Es un post")
         else:
             codigo = "HTTP/1.1 405 Method Not allowed"
             respuesta_html = ("<html><body><h1>Metodo no permitido" +
