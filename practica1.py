@@ -19,7 +19,7 @@ FORMULARIO = """
 """
 
 
-class practica1(webapp.webApp):
+class acortadorURLs(webapp.webApp):
 
     url_orig = {}
     url_cortas = {}
@@ -65,8 +65,8 @@ class practica1(webapp.webApp):
                 recurso = recurso[1:]
                 if recurso in self.url_cortas:
                     codigo = "HTTP/1.1 302 Redirect"  # Redirección en 0s
-                    respuesta_html = ("<html><meta http-equiv='Refresh'" +
-                                      "content= 0; url=" +
+                    respuesta_html = ("<html><meta http-equiv='Refresh' " +
+                                      "content= 0;url=" +
                                       self.url_cortas[recurso] +
                                       "></p></body></html>")
                 else:
@@ -116,4 +116,4 @@ class practica1(webapp.webApp):
         return (codigo, respuesta_html)
 
 if __name__ == "__main__":
-    testWebApp = practica1("localhost", 1234)
+    testWebApp = acortadorURLs("localhost", 1234)
