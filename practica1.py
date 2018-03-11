@@ -55,7 +55,7 @@ class practica1(webapp.webApp):
             if recurso == "favicon.ico":
                 codigo = "HTTP/1.1 404 Not Found"
                 respuesta_html = "<html><body><h1>Not found" +
-                                 "</h1></body></html>"
+                                "</h1></body></html>"
             elif recurso == "/":
                 codigo = "HTTP/1.1 200 OK"
                 respuesta_html = (FORMULARIO + "<html><body>" +
@@ -72,7 +72,7 @@ class practica1(webapp.webApp):
                 else:
                     codigo = "HTTP/1.1 404 Not Found"
                     respuesta_html = "<html><body><h1>Not found!" +
-                                     "</h1></body></html>"
+                                    "</h1></body></html>"
 
         elif (metodo == "POST"):
             if url_orig == "":  # formulario vacío
@@ -81,7 +81,7 @@ class practica1(webapp.webApp):
                                   "</h1></body></html>")
             else:  # dicotomía http
                 if (url_orig[0:13] == "http%3A%2F%2F" or
-                    url_orig[0:14] == "https%3A%2F%2F"):
+                        url_orig[0:14] == "https%3A%2F%2F"):
                     from urllib.parse import unquote
                     url_orig = unquote(url_orig)
                 else:
@@ -90,7 +90,7 @@ class practica1(webapp.webApp):
                 self.cont = len(self.url_orig)
                 if url_orig in self.url_orig:  # entrada ya existente
                     path = "http://localhost:1234/" +
-                            str(self.url_orig[url_orig])
+                                str(self.url_orig[url_orig])
                     codigo = "HTTP/1.1 200 OK"
                     respuesta_html = ("<html><body>La URL corta es: " +
                                       "<a href=" + path + ">" + path +
