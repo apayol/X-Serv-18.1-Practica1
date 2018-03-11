@@ -59,7 +59,7 @@ class practica1(webapp.webApp):
             elif recurso == "/":
                 codigo = "HTTP/1.1 200 OK"
                 respuesta_html = (FORMULARIO + "<html><body>Mi lista de URLs acortadas:" +
-                                  str(self.url_cortas) + "</html></body>")
+                                  str(self.url_orig) + "</html></body>")
             else:
                 recurso = recurso[1:]
                 if recurso in self.url_cortas:
