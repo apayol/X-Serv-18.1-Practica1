@@ -8,7 +8,6 @@ Adrián Payol Montero
 
 import webapp
 import csv
-import os.path
 
 
 FORMULARIO = """
@@ -19,7 +18,6 @@ FORMULARIO = """
     </form> 
 """
 
-
 class practica1(webapp.webApp):
 
     url_orig = {}
@@ -27,6 +25,7 @@ class practica1(webapp.webApp):
     cont = 0
 
     def leer(self):
+        import os.path
         if os.path.isfile('coleccion_urls.csv'):
             with open('coleccion_urls.csv', 'r') as csvfile:
                 leer = csv.reader(csvfile, delimiter = ',')
