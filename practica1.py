@@ -58,15 +58,32 @@ class practica1(webapp.webApp):
                 respuesta_html = "<html><body><h1>Not found</h1></body></html>"
             elif recurso == "/":
                 codigo = "HTTP/1.1 200 OK"
-                respuesta_html = FORMULARIO
+                respuesta_html = FORMULARIO + "<html><body>" + str(self.url_corta) + "</html></body>" 
             else:
                 codigo = "HTTP/1.1 404 Not Found"
                 respuesta_html = "<html><body><h1>Not found</h1></body></html>"
         elif (metodo == "POST"):
-            print("Es un post")
-            codigo = "HTTP/1.1 200 OK"
-            respuesta_html = ("<html><body><h1>Prueba2" +
-                              "</h1></body></html>")
+            if url_orig == "":
+                codigo = "HTTP/1.1 204 No Content"
+                respuesta_html = ("<html><body><h1>Formulario sin contenido</h1></body></html>")
+            elif (url_orig[0:7] == "http://" or url_orig[0:8] == "https://"):
+                url_orig = unquote(url_orig)
+            else: #si hay contenido y no empieza por http:// o https://
+                url_orig = "http://" + url_orig
+   
+            self.cont = len(self.url_orig)
+            if  url_orig in self.url_orig:
+                path = str(self.urrl_orig[url_orig])
+                path = "http://localhost:1234/" + path
+                codigo = "HTTP/1.1 200 OK"
+                respuesta_html = ("<html><body><a href=" + path + ">" + path + "</a></body></html>")
+            else:
+                self.url_orig[url_orig] = self.cont
+                path = "http://localhost:1234/" + str(self.cont)
+                self.url_corta[self.cont] = url_orig
+                self.cont = self.cont + 1
+                codigo = "HTTP/1.1 200 OK"
+                respuesta_html = ("<html><body><a href=" + path + ">" + path + "</a></body></html>")
         else:
             codigo = "HTTP/1.1 405 Method Not allowed"
             respuesta_html = ("<html><body><h1>Metodo no permitido" +
