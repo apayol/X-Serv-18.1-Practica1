@@ -55,7 +55,7 @@ class practica1(webapp.webApp):
             if recurso == "favicon.ico":
                 codigo = "HTTP/1.1 404 Not Found"
                 respuesta_html = "<html><body><h1>Not found" +
-                                "</h1></body></html>"
+                                    "</h1></body></html>"
             elif recurso == "/":
                 codigo = "HTTP/1.1 200 OK"
                 respuesta_html = (FORMULARIO + "<html><body>" +
@@ -72,7 +72,7 @@ class practica1(webapp.webApp):
                 else:
                     codigo = "HTTP/1.1 404 Not Found"
                     respuesta_html = "<html><body><h1>Not found!" +
-                                    "</h1></body></html>"
+                                        "</h1></body></html>"
 
         elif (metodo == "POST"):
             if url_orig == "":  # formulario vacío
